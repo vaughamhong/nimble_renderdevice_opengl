@@ -15,7 +15,7 @@
 #include <vector>
 #include <map>
 #include <nimble/renderdevice/ishaderparamblock.h>
-#include <shaderparam.h>
+#include <nimble/renderdevice/opengl/shaderparam.h>
 
 //////////////////////////////////////////////////////////////////////////
 

@@ -10,7 +10,7 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-#include <arraybuffer.h>
+#include <nimble/renderdevice/opengl/arraybuffer.h>
 #include <nimble/renderdevice/iindexbuffer.h>
 #include <nimble/core/ilockable.h>
 #include <nimble/resource/resource.h>

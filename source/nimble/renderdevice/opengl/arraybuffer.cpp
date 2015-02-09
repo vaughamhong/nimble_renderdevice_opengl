@@ -5,7 +5,7 @@
 // file 'license.txt', which is part of this source code package.
 //
 
-#include <arraybuffer.h>
+#include <nimble/renderdevice/opengl/arraybuffer.h>
 #include <nimble/core/ilockable.h>
 #include <nimble/core/assert.h>
 

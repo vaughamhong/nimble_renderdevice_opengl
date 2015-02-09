@@ -5,7 +5,7 @@
 // file 'license.txt', which is part of this source code package.
 //
 
-#include <shaderparamblock.h>
+#include <nimble/renderdevice/opengl/shaderparamblock.h>
 #include <nimble/core/logger.h>
 #include <nimble/core/hash.h>
 

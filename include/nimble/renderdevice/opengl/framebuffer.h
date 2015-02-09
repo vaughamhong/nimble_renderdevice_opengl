@@ -10,7 +10,7 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-#include <common.h>
+#include <nimble/renderdevice/opengl/common.h>
 #include <nimble/renderdevice/iframebuffer.h>
 #include <nimble/resource/resource.h>
 

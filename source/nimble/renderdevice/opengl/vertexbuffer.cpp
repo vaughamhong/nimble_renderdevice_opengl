@@ -5,8 +5,8 @@
 // file 'license.txt', which is part of this source code package.
 //
 
-#include <vertexbuffer.h>
-#include <mappings.h>
+#include <nimble/renderdevice/opengl/vertexbuffer.h>
+#include <nimble/renderdevice/opengl/mappings.h>
 #include <nimble/core/assert.h>
 
 //////////////////////////////////////////////////////////////////////////

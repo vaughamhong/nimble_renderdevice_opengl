@@ -5,13 +5,13 @@
 // file 'license.txt', which is part of this source code package.
 //
 
-#include <renderdevice.h>
-#include <framebuffer.h>
-#include <vertexbuffer.h>
-#include <indexbuffer.h>
-#include <texture.h>
-#include <shader.h>
-#include <shaderprogram.h>
+#include <nimble/renderdevice/opengl/renderdevice.h>
+#include <nimble/renderdevice/opengl/framebuffer.h>
+#include <nimble/renderdevice/opengl/vertexbuffer.h>
+#include <nimble/renderdevice/opengl/indexbuffer.h>
+#include <nimble/renderdevice/opengl/texture.h>
+#include <nimble/renderdevice/opengl/shader.h>
+#include <nimble/renderdevice/opengl/shaderprogram.h>
 
 //////////////////////////////////////////////////////////////////////////
 

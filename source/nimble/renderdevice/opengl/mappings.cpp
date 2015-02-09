@@ -5,8 +5,8 @@
 // file 'license.txt', which is part of this source code package.
 //
 
-#include <mappings.h>
-#include <texture.h>
+#include <nimble/renderdevice/opengl/mappings.h>
+#include <nimble/renderdevice/opengl/texture.h>
 #include <nimble/core/ilockable.h>
 
 //////////////////////////////////////////////////////////////////////////

@@ -10,7 +10,7 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-#include <common.h>
+#include <nimble/renderdevice/opengl/common.h>
 #include <nimble/renderdevice/irenderdevice.h>
 #include <nimble/math/rect.h>
 #include <vector>

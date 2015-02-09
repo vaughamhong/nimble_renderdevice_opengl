@@ -102,10 +102,10 @@ endif()
 
 # ================================================================
 
-message(STATUS "CMAKE_ARCHIVE_OUTPUT_DIRECTORY: ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}")
-message(STATUS "CMAKE_LIBRARY_OUTPUT_DIRECTORY: ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}")
-message(STATUS "CMAKE_RUNTIME_OUTPUT_DIRECTORY: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
-message(STATUS "CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
+#message(STATUS "CMAKE_ARCHIVE_OUTPUT_DIRECTORY: ${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}")
+#message(STATUS "CMAKE_LIBRARY_OUTPUT_DIRECTORY: ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}")
+#message(STATUS "CMAKE_RUNTIME_OUTPUT_DIRECTORY: ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
+#message(STATUS "CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
 
 # ================================================================
 
@@ -166,11 +166,9 @@ endif()
 # Generate nimble lib
 # ================================================================
 
-# gather our source files
-file(GLOB Src ./source/*.cpp)
-
-# gather our header files
-file(GLOB Inc ./include/*.h)
+# gather our source and header files
+file(GLOB_RECURSE Src ./source/*.cpp)
+file(GLOB_RECURSE Inc ./include/*.h)
 
 # ================================================================
 

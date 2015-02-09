@@ -10,9 +10,9 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-#include <common.h>
-#include <shaderparam.h>
-#include <shaderparamblock.h>
+#include <nimble/renderdevice/opengl/common.h>
+#include <nimble/renderdevice/opengl/shaderparam.h>
+#include <nimble/renderdevice/opengl/shaderparamblock.h>
 #include <nimble/renderdevice/ishaderprogram.h>
 #include <nimble/resource/resource.h>
 #include <map>

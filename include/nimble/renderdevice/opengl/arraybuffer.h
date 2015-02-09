@@ -15,7 +15,7 @@
 #include <nimble/core/buffer.h>
 #include <nimble/resource/resource.h>
 #include <nimble/renderdevice/iarraybuffer.h>
-#include <common.h>
+#include <nimble/renderdevice/opengl/common.h>
 
 //////////////////////////////////////////////////////////////////////////
 

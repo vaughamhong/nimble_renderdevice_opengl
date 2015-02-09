@@ -10,8 +10,8 @@
 
 //////////////////////////////////////////////////////////////////////////
 
-#include <common.h>
-#include <arraybuffer.h>
+#include <nimble/renderdevice/opengl/common.h>
+#include <nimble/renderdevice/opengl/arraybuffer.h>
 #include <nimble/renderdevice/itexture.h>
 #include <nimble/renderdevice/irenderdevice.h>
 #include <nimble/core/Lockable.h>

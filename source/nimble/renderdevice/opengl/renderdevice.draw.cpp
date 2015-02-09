@@ -5,9 +5,9 @@
 // file 'license.txt', which is part of this source code package.
 //
 
-#include <renderdevice.h>
-#include <framebuffer.h>
-#include <mappings.h>
+#include <nimble/renderdevice/opengl/renderdevice.h>
+#include <nimble/renderdevice/opengl/framebuffer.h>
+#include <nimble/renderdevice/opengl/mappings.h>
 
 //////////////////////////////////////////////////////////////////////////
 

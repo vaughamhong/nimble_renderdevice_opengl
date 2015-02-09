@@ -5,8 +5,8 @@
 // file 'license.txt', which is part of this source code package.
 //
 
-#include <indexbuffer.h>
-#include <mappings.h>
+#include <nimble/renderdevice/opengl/indexbuffer.h>
+#include <nimble/renderdevice/opengl/mappings.h>
 
 //////////////////////////////////////////////////////////////////////////
 

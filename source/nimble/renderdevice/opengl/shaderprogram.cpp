@@ -5,10 +5,10 @@
 // file 'license.txt', which is part of this source code package.
 //
 
-#include <shaderprogram.h>
-#include <shader.h>
-#include <shaderparam.h>
-#include <texture.h>
+#include <nimble/renderdevice/opengl/shaderprogram.h>
+#include <nimble/renderdevice/opengl/shader.h>
+#include <nimble/renderdevice/opengl/shaderparam.h>
+#include <nimble/renderdevice/opengl/texture.h>
 #include <nimble/core/assert.h>
 
 //////////////////////////////////////////////////////////////////////////
