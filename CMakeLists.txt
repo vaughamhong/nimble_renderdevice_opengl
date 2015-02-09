@@ -163,6 +163,15 @@ if(NIMBLE_DISABLE_ASSERTS)
 endif()
 
 # ================================================================
+# Find and include external packages
+# ================================================================
+message(STATUS "Looking for external packages...")
+
+find_package(nimble REQUIRED)
+include_directories(${nimble_INCLUDE_DIRS})
+message(STATUS ${nimble_INCLUDE_DIRS})
+
+# ================================================================
 # Generate nimble lib
 # ================================================================
 

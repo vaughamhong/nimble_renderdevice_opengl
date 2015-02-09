@@ -7,7 +7,7 @@
 
 #include <nimble/renderdevice/opengl/texture.h>
 #include <nimble/renderdevice/opengl/mappings.h>
-#include <nimble/image/image.h>
+#include <nimble/image/iimage.h>
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -17,7 +17,7 @@ using namespace nimble::renderdevice::opengl;
 //////////////////////////////////////////////////////////////////////////
 
 //! returns the internal texture format
-renderdevice::eTextureFormat imageFormatToTextureFormat(image::Image::eFormat format){
+renderdevice::eTextureFormat imageFormatToTextureFormat(image::eImageFormat format){
 #define TEXTURE_TUPLE(ENUM, PIXEL_BYTESIZE, PIXEL_BPP, IMAGEFORMAT) if(IMAGEFORMAT == format){return renderdevice::ENUM;}
     TEXTURE_TUPLESET
 #undef TEXTURE_TUPLE
@@ -45,7 +45,7 @@ Texture::Texture(uint32_t width, uint32_t height, renderdevice::eTextureFormat t
 	createBuffers();
 }
 //! Constructor
-Texture::Texture(image::Image& image, uint32_t usage)
+Texture::Texture(image::IImage& image, uint32_t usage)
 :m_arrayBuffer(image.getWidth() * image.getHeight(), image.getBytesPerPixel(), usage, GL_PIXEL_UNPACK_BUFFER)
 ,m_textureHandle(0)
 ,m_created(false)
@@ -63,19 +63,12 @@ Texture::Texture(image::Image& image, uint32_t usage)
     createBuffers();
     
     // copy our source data to our destination
-    char* pSrPointer = 0;
     char* pDestPointer = 0;
-    if(image.lock(core::kLockTypeRead, (char**)&pSrPointer)){
-        if(this->lock(core::kLockTypeWrite, (char**)&pDestPointer)){
-            memcpy(pDestPointer, pSrPointer, getBufferSize());
-            this->unlock();
-            image.unlock();
-        }else{
-            core::logger_error("graphics", "Failed to lock destination texture buffer");
-            image.unlock();
-        }
+    if(this->lock(core::kLockTypeWrite, (char**)&pDestPointer)){
+        memcpy(pDestPointer, image.getBuffer(), getBufferSize());
+        this->unlock();
     }else{
-        core::logger_error("graphics", "Failed to lock source texture buffer");
+        core::logger_error("graphics", "Failed to lock destination texture buffer");
     }
 }
 //! Constructor
