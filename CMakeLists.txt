@@ -77,6 +77,14 @@ set(variables
   CMAKE_CXX_FLAGS_RELWITHDEBINFO
 )
 
+if(NIMBLE_VISUALSTUDIO_2012)
+    set(TARGET_VSS_VERSION "vs2012")
+elseif(NIMBLE_VISUALSTUDIO_2010)
+    set(TARGET_VSS_VERSION "vs2010")
+else()
+    set(TARGET_VSS_VERSION "vs2010")
+endif()
+
 # ================================================================
 
 if(NIMBLE_SHOW_CMAKE_VARS)
@@ -169,7 +177,8 @@ message(STATUS "Looking for external packages...")
 
 find_package(nimble REQUIRED)
 include_directories(${nimble_INCLUDE_DIRS})
-message(STATUS ${nimble_INCLUDE_DIRS})
+find_package(glew REQUIRED)
+include_directories(${glew_INCLUDE_DIRS})
 
 # ================================================================
 # Generate nimble lib
@@ -184,7 +193,6 @@ file(GLOB_RECURSE Inc ./include/*.h)
 # create our static nimble library
 include_directories(./include)
 include_directories(./source)
-include_directories(./sdk)
 set(Files ${Src} ${Inc})
 list(SORT Files)
 add_library(nimblerenderdeviceopengl ${Files})
