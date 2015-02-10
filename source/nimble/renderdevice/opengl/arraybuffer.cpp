@@ -16,6 +16,11 @@ using namespace nimble::renderdevice::opengl;
 
 //////////////////////////////////////////////////////////////////////////
 
+// TODO
+// be able to make orphan buffer explicit
+
+//////////////////////////////////////////////////////////////////////////
+
 //! a constructor
 //! \param numElements the number of elements in this buffer
 //! \param elementSize the element size
@@ -172,7 +177,6 @@ char* ArrayBuffer::mapBufferRange(core::eLockType lockType, uint32_t offset, uin
     // tell driver to orphan our previous buffer and
     // allocate a new one. This removes the need to synchronize (which
     // blocks until commands are flushed).
-    #pragma message("TODO: make ophan calls explicit, there may be a need to modify existing buffers")
     if(m_usage & renderdevice::kArrayUsageVolitile){
         GLDEBUG(glBufferData(m_target, size, 0, GL_DYNAMIC_DRAW));
     }else if(m_usage & renderdevice::kArrayUsageStatic){
