@@ -7,7 +7,7 @@
 
 #include <nimble/renderdevice/opengl/texture.h>
 #include <nimble/renderdevice/opengl/mappings.h>
-#include <nimble/image/iimage.h>
+#include <nimble/image/image.h>
 
 //////////////////////////////////////////////////////////////////////////
 
@@ -45,7 +45,7 @@ Texture::Texture(uint32_t width, uint32_t height, renderdevice::eTextureFormat t
 	createBuffers();
 }
 //! Constructor
-Texture::Texture(image::IImage& image, uint32_t usage)
+Texture::Texture(image::Image& image, uint32_t usage)
 :m_arrayBuffer(image.getWidth() * image.getHeight(), image.getBytesPerPixel(), usage, GL_PIXEL_UNPACK_BUFFER)
 ,m_textureHandle(0)
 ,m_created(false)

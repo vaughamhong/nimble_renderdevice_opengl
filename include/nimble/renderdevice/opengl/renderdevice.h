@@ -301,7 +301,7 @@ namespace nimble{
                 //! \param format the format of the texture
                 //! \param usage the usage hints for this texture
                 //! \return a texture
-                virtual renderdevice::ITexture* createTextureFromImage(image::IImage &image,
+                virtual renderdevice::ITexture* createTextureFromImage(image::Image &image,
                                                                        uint32_t usage);
                 //! creates a shader
                 //! \param type the shader type

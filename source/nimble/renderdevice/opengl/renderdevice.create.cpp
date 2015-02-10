@@ -58,7 +58,7 @@ renderdevice::ITexture* RenderDevice::createTexture(uint32_t width, uint32_t hei
 //! \param format the format of the texture
 //! \param usage the usage hints for this texture
 //! \return a texture
-renderdevice::ITexture* RenderDevice::createTextureFromImage(image::IImage &image, uint32_t usage){
+renderdevice::ITexture* RenderDevice::createTextureFromImage(image::Image &image, uint32_t usage){
     return new renderdevice::opengl::Texture(image, usage);
 }
 //! creates a shader

@@ -75,7 +75,7 @@ namespace nimble{
                 //! Constructor
                 Texture(uint32_t width, uint32_t height, renderdevice::eTextureFormat textureFormat, uint32_t usage);
                 //! Constructor
-                Texture(image::IImage& image, uint32_t usage);
+                Texture(image::Image& image, uint32_t usage);
                 //! copy constructor
                 Texture(Texture& texture);
                 //! Destructor
