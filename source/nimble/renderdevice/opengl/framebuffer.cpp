@@ -155,18 +155,18 @@ void FrameBuffer::attachTextureTargets(renderdevice::eFrameBufferType *types, re
         
         // skip binding if texture dimensions are not correct
         if(pTexture->getDimension() != renderdevice::kTextureDimention2D){
-            core::logger_warning("renderer", "Failed to attach texture to frame buffer - mismatching dimensions");
+            NIMBLE_LOG_WARNING("renderer", "Failed to attach texture to frame buffer - mismatching dimensions");
             continue;
         }
         if(width != this->getWidth() || height != this->getHeight()){
-            core::logger_warning("renderer", "Failed to attach texture to frame buffer - mismatching dimensions");
+            NIMBLE_LOG_WARNING("renderer", "Failed to attach texture to frame buffer - mismatching dimensions");
             continue;
         }
         
         // get our native texture to work with
         renderdevice::opengl::Texture* pNativeTexture = dynamic_cast<renderdevice::opengl::Texture*>(pTexture);
         if(pNativeTexture == 0){
-            core::logger_error(__LINE__, __FILE__, "graphics", "Failed to attach invalid texture");
+            NIMBLE_LOG_ERROR("graphics", "Failed to attach invalid texture");
             continue;
         }
         
@@ -209,7 +209,7 @@ void FrameBuffer::attachTextureTargets(renderdevice::eFrameBufferType *types, re
                 break;
             }
             default:{
-                core::logger_error(__LINE__, __FILE__, "graphics", "Failed to attach texture to invalid target");
+                NIMBLE_LOG_ERROR("graphics", "Failed to attach texture to invalid target");
             }
         };
     }
@@ -250,7 +250,7 @@ void FrameBuffer::detachTextureTargets(renderdevice::eFrameBufferType *types, si
                 break;
             }
             default:{
-                core::logger_error(__LINE__, __FILE__, "graphics", "Failed to detach invalid target");
+                NIMBLE_LOG_ERROR("graphics", "Failed to detach invalid target");
                 break;
             }
         }
@@ -270,7 +270,7 @@ void FrameBuffer::setWriteTargets(uint32_t bufferMask){
     int32_t numTargets = 0;
     if(bufferMask & renderdevice::kFrameBufferDepthBit){targets[numTargets] = GL_DEPTH_ATTACHMENT; numTargets++;}
     if(bufferMask & renderdevice::kFrameBufferStencilBit){targets[numTargets] = GL_STENCIL_ATTACHMENT; numTargets++;}
-    if(bufferMask & renderdevice::kFrameBufferAccumulationBit){core::logger_warning("renderer", "Failed to set write target - accumulation buffer");}
+    if(bufferMask & renderdevice::kFrameBufferAccumulationBit){NIMBLE_LOG_WARNING("renderer", "Failed to set write target - accumulation buffer");}
     if(bufferMask & renderdevice::kFrameBufferColor0Bit){targets[numTargets] = GL_COLOR_ATTACHMENT0; numTargets++;}
     if(bufferMask & renderdevice::kFrameBufferColor1Bit){targets[numTargets] = GL_COLOR_ATTACHMENT1; numTargets++;}
     if(bufferMask & renderdevice::kFrameBufferColor2Bit){targets[numTargets] = GL_COLOR_ATTACHMENT2; numTargets++;}

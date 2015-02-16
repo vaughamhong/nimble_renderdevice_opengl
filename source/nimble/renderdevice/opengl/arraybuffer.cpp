@@ -58,11 +58,11 @@ ArrayBuffer::ArrayBuffer(ArrayBuffer& buffer)
             this->unlock();
             buffer.unlock();
         }else{
-            core::logger_error(__LINE__, __FILE__, "graphics", "Failed to lock destination array buffer");
+            NIMBLE_LOG_ERROR("graphics", "Failed to lock destination array buffer");
             buffer.unlock();
         }
     }else{
-        core::logger_error(__LINE__, __FILE__, "graphics", "Failed to lock source array buffer");
+        NIMBLE_LOG_ERROR("graphics", "Failed to lock source array buffer");
     }
 }
 //! a destructor

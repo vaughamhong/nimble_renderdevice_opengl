@@ -32,7 +32,7 @@ static const int kMaxUniformNameSize = 64;
 ShaderProgram::ShaderProgram()
 :m_programHandle(0){
     m_programHandle = GLDEBUG(glCreateProgram());
-	NIMBLE_ASSERT_MSG(m_programHandle != 0, "Failed to create program handle");
+	NIMBLE_ASSERT_PRINT(m_programHandle != 0, "Failed to create program handle");
 }
 //! Destructor
 ShaderProgram::~ShaderProgram(){
@@ -60,11 +60,11 @@ void ShaderProgram::compile(renderdevice::IShader *pVertexShader, renderdevice::
     renderdevice::opengl::Shader *pNativeVertexShader = dynamic_cast<renderdevice::opengl::Shader*>(pVertexShader);
     renderdevice::opengl::Shader *pNativePixelShader = dynamic_cast<renderdevice::opengl::Shader*>(pPixelShader);
     if(!pNativeVertexShader || (pVertexShader->getShaderType() != renderdevice::kShaderTypeVertex)){
-        core::logger_error(__LINE__, __FILE__, "graphics", "Program compiling with an invalid vertex shader");
+        NIMBLE_LOG_ERROR("graphics", "Program compiling with an invalid vertex shader");
         return;
     }
     if(!pNativePixelShader || (pPixelShader->getShaderType() != renderdevice::kShaderTypePixel)){
-        core::logger_error(__LINE__, __FILE__, "graphics", "Program compiling with an invalid pixel shader");
+        NIMBLE_LOG_ERROR("graphics", "Program compiling with an invalid pixel shader");
         return;
     }
     
@@ -85,10 +85,10 @@ void ShaderProgram::compile(renderdevice::IShader *pVertexShader, renderdevice::
             char *pLogBuffer = (char*)malloc(maxLogLength);
             GLint loglen = 0;
 			GLDEBUG(glGetProgramInfoLog(m_programHandle, (GLsizei)maxLogLength, &loglen, pLogBuffer));
-            core::logger_error(__LINE__, __FILE__, "graphics", "Shader program compile log:\n%.*s", loglen, pLogBuffer);
+            NIMBLE_LOG_ERROR("graphics", "Shader program compile log:\n%.*s", loglen, pLogBuffer);
 			free(pLogBuffer);
         }else{
-            core::logger_error(__LINE__, __FILE__, "graphics", "Shader program compile general failure...");
+            NIMBLE_LOG_ERROR("graphics", "Shader program compile general failure...");
         }
         return;
     }
@@ -119,7 +119,7 @@ void ShaderProgram::compile(renderdevice::IShader *pVertexShader, renderdevice::
         // map uniform type to internal type
         paramType = mapGLUniformTypeToInternalType(uniformType);
         if(paramType == renderdevice::kTypeNull){
-            core::logger_error(__LINE__, __FILE__, "graphics", "Failed to map shader uniform type to internal type");
+            NIMBLE_LOG_ERROR("graphics", "Failed to map shader uniform type to internal type");
             continue;
         }
         
@@ -172,7 +172,7 @@ renderdevice::IShaderParamBlock* ShaderProgram::createShaderParamBlock(const cha
             if(pParam != 0){
                 pBlock->addShaderParam(*pParam);
             }else{
-                core::logger_warning("graphics", "Failed to find param with name \"%s\"", name);
+                NIMBLE_LOG_WARNING("graphics", "Failed to find param with name \"%s\"", name);
             }
         }
     }
@@ -189,7 +189,7 @@ void ShaderProgram::setShaderParamByName(const char *name, void* pData){
     renderdevice::IShaderParam const *pShaderParam = this->getShaderParamByName(name);
     renderdevice::opengl::ShaderParam const *pNativeShaderParam = dynamic_cast<renderdevice::opengl::ShaderParam const*>(pShaderParam);
     if(pNativeShaderParam == 0){
-        core::logger_warning("graphics", "Failed to set shader parameter with name \"%s\"", name);
+        NIMBLE_LOG_WARNING("graphics", "Failed to set shader parameter with name \"%s\"", name);
         return;
     }
     

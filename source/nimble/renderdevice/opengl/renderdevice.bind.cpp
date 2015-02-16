@@ -34,7 +34,7 @@ void RenderDevice::bindFrameBuffer(renderdevice::IFrameBuffer* pFrameBuffer){
     // bind native frame buffer
     renderdevice::opengl::FrameBuffer* pNativeFrameBuffer = dynamic_cast<renderdevice::opengl::FrameBuffer*>(pFrameBuffer);
     if(pNativeFrameBuffer == 0){
-        core::logger_error(__LINE__, __FILE__, "graphics", "Failed to bind frame buffer - invalid native frame buffer");
+        NIMBLE_LOG_ERROR("graphics", "Failed to bind frame buffer - invalid native frame buffer");
         return;
     }
     
@@ -50,13 +50,13 @@ void RenderDevice::bindFrameBuffer(renderdevice::IFrameBuffer* pFrameBuffer){
 void RenderDevice::bindIndexBuffer(renderdevice::IIndexBuffer* pIndexBuffer){
     // make sure index buffer is valid
     if(!pIndexBuffer){
-        core::logger_warning("graphics", "Failed to bind index buffer - invalid input");
+        NIMBLE_LOG_WARNING("graphics", "Failed to bind index buffer - invalid input");
         return;
     }
     //! make sure we have a valid native index buffer
     renderdevice::opengl::IndexBuffer* pNativeIndexBuffer = dynamic_cast<renderdevice::opengl::IndexBuffer*>(pIndexBuffer);
     if(!pNativeIndexBuffer){
-        core::logger_error(__LINE__, __FILE__, "graphics", "Failed to bind index buffer - invalid native index buffer");
+        NIMBLE_LOG_ERROR("graphics", "Failed to bind index buffer - invalid native index buffer");
         return;
     }
     
@@ -75,24 +75,24 @@ void RenderDevice::bindIndexBuffer(renderdevice::IIndexBuffer* pIndexBuffer){
 void RenderDevice::bindVertexBuffer(renderdevice::IVertexBuffer* pVertexBuffer){
     // make sure vertex buffer is valid
     if(!pVertexBuffer){
-        core::logger_warning("graphics", "Failed to bind vertex buffer - invalid input");
+        NIMBLE_LOG_WARNING("graphics", "Failed to bind vertex buffer - invalid input");
         return;
     }
     // make sure we have a valid native vertex buffer
     renderdevice::opengl::VertexBuffer* pNativeVertexBuffer = dynamic_cast<renderdevice::opengl::VertexBuffer*>(pVertexBuffer);
     if(!pNativeVertexBuffer){
-        core::logger_warning("graphics", "Failed to bind vertex buffer - invalid native vertex buffer");
+        NIMBLE_LOG_WARNING("graphics", "Failed to bind vertex buffer - invalid native vertex buffer");
         return;
     }
     // make sure we have a shader program
     if(!m_context.m_pShaderProgram){
-        core::logger_warning("graphics", "Failed to bind vertex buffer - no shader program to bind to");
+        NIMBLE_LOG_WARNING("graphics", "Failed to bind vertex buffer - no shader program to bind to");
         return;
     }
     // make sure we have a valid native shader program
     renderdevice::opengl::ShaderProgram *pNativeShaderProgram = dynamic_cast<renderdevice::opengl::ShaderProgram*>(m_context.m_pShaderProgram);
     if(!pNativeShaderProgram){
-        core::logger_warning("graphics", "Failed to bind vertex buffer - invalid native shader program");
+        NIMBLE_LOG_WARNING("graphics", "Failed to bind vertex buffer - invalid native shader program");
         return;
     }
     
@@ -142,7 +142,7 @@ void RenderDevice::bindVertexBuffer(renderdevice::IVertexBuffer* pVertexBuffer){
 void RenderDevice::bindTexture(uint32_t textureUnit, renderdevice::ITexture* pTexture){
     //  make sure we have a valid shader program to bind to
 	if(!m_context.m_pShaderProgram){
-        core::logger_warning("graphics", "No shader program to bind to");
+        NIMBLE_LOG_WARNING("graphics", "No shader program to bind to");
         return;
     }
     // unbind if null texture
