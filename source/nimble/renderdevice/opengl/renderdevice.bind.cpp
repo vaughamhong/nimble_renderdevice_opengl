@@ -34,7 +34,7 @@ void RenderDevice::bindFrameBuffer(renderdevice::IFrameBuffer* pFrameBuffer){
     // bind native frame buffer
     renderdevice::opengl::FrameBuffer* pNativeFrameBuffer = dynamic_cast<renderdevice::opengl::FrameBuffer*>(pFrameBuffer);
     if(pNativeFrameBuffer == 0){
-        core::logger_error("graphics", "Failed to bind frame buffer - invalid native frame buffer");
+        core::logger_error(__LINE__, __FILE__, "graphics", "Failed to bind frame buffer - invalid native frame buffer");
         return;
     }
     
@@ -56,7 +56,7 @@ void RenderDevice::bindIndexBuffer(renderdevice::IIndexBuffer* pIndexBuffer){
     //! make sure we have a valid native index buffer
     renderdevice::opengl::IndexBuffer* pNativeIndexBuffer = dynamic_cast<renderdevice::opengl::IndexBuffer*>(pIndexBuffer);
     if(!pNativeIndexBuffer){
-        core::logger_error("graphics", "Failed to bind index buffer - invalid native index buffer");
+        core::logger_error(__LINE__, __FILE__, "graphics", "Failed to bind index buffer - invalid native index buffer");
         return;
     }
     

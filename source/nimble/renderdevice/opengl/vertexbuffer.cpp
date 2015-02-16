@@ -21,7 +21,7 @@ using namespace nimble::renderdevice::opengl;
 //! \param numVertices the number of vertices in this buffer
 //! \param usage the usage hints for this buffer
 VertexBuffer::VertexBuffer(renderdevice::VertexFormat const &vertexFormat, uint32_t numVertices, uint32_t usage)
-:m_arrayBuffer(numVertices, vertexFormat.getVertexStride(), usage, GL_ELEMENT_ARRAY_BUFFER)
+:m_arrayBuffer(numVertices, vertexFormat.getVertexStride(), usage, GL_ARRAY_BUFFER)
 ,m_vertexFormat(vertexFormat){
 }
 //! a copy constructor
@@ -79,7 +79,7 @@ char* VertexBuffer::mapBufferRange(core::eLockType lockType, uint32_t offset, ui
 }
 //! attempts to unmap array buffer
 void VertexBuffer::unmapBuffer(){
-    return m_arrayBuffer.unmapBuffer();
+    m_arrayBuffer.unmapBuffer();
 }
 
 //////////////////////////////////////////////////////////////////////////

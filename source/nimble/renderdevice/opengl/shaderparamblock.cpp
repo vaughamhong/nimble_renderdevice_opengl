@@ -94,13 +94,13 @@ void ShaderParamBlock::addShaderParam(renderdevice::IShaderParam const &param){
     int32_t uniformNameHash = core::hash(name);
     NameToParamIndex::iterator it = m_nameToParamIndex.find(uniformNameHash);
     if(it != m_nameToParamIndex.end()){
-        core::logger_error("graphics", "Failed to add shader param with name \"%s\"", name);
+        core::logger_error(__LINE__, __FILE__, "graphics", "Failed to add shader param with name \"%s\"", name);
         return;
     }
     
     renderdevice::opengl::ShaderParam const *pShaderParam = dynamic_cast<renderdevice::opengl::ShaderParam const*>(&param);
     if(pShaderParam == 0){
-        core::logger_error("graphics", "Failed to add shader param with name \"%s\"", name);
+        core::logger_error(__LINE__, __FILE__, "graphics", "Failed to add shader param with name \"%s\"", name);
         return;
     }
 

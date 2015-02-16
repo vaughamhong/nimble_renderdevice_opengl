@@ -166,7 +166,7 @@ void FrameBuffer::attachTextureTargets(renderdevice::eFrameBufferType *types, re
         // get our native texture to work with
         renderdevice::opengl::Texture* pNativeTexture = dynamic_cast<renderdevice::opengl::Texture*>(pTexture);
         if(pNativeTexture == 0){
-            core::logger_error("graphics", "Failed to attach invalid texture");
+            core::logger_error(__LINE__, __FILE__, "graphics", "Failed to attach invalid texture");
             continue;
         }
         
@@ -209,7 +209,7 @@ void FrameBuffer::attachTextureTargets(renderdevice::eFrameBufferType *types, re
                 break;
             }
             default:{
-                core::logger_error("graphics", "Failed to attach texture to invalid target");
+                core::logger_error(__LINE__, __FILE__, "graphics", "Failed to attach texture to invalid target");
             }
         };
     }
@@ -250,7 +250,7 @@ void FrameBuffer::detachTextureTargets(renderdevice::eFrameBufferType *types, si
                 break;
             }
             default:{
-                core::logger_error("graphics", "Failed to detach invalid target");
+                core::logger_error(__LINE__, __FILE__, "graphics", "Failed to detach invalid target");
                 break;
             }
         }
