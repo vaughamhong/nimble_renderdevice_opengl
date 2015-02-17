@@ -25,12 +25,11 @@ using namespace nimble::renderdevice::opengl;
 //! \param pFrameBuffer the frame buffer
 //! \return true if successful
 void RenderDevice::bindFrameBuffer(renderdevice::IFrameBuffer* pFrameBuffer){
-    // bind null frame (default) framebuffer
+    // unbinds previously bound buffer
     if(!pFrameBuffer){
-		GLDEBUG(glBindFramebuffer(GL_FRAMEBUFFER, 0));
+        GLDEBUG(glBindFramebuffer(GL_FRAMEBUFFER, 0));
         return;
     }
-    
     // bind native frame buffer
     renderdevice::opengl::FrameBuffer* pNativeFrameBuffer = dynamic_cast<renderdevice::opengl::FrameBuffer*>(pFrameBuffer);
     if(pNativeFrameBuffer == 0){
@@ -48,9 +47,9 @@ void RenderDevice::bindFrameBuffer(renderdevice::IFrameBuffer* pFrameBuffer){
 //! sets index array
 //! \param pIndexBuffer the index array to bind
 void RenderDevice::bindIndexBuffer(renderdevice::IIndexBuffer* pIndexBuffer){
-    // make sure index buffer is valid
+    // unbinds previously bound buffer
     if(!pIndexBuffer){
-        NIMBLE_LOG_WARNING("graphics", "Failed to bind index buffer - invalid input");
+        GLDEBUG(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
         return;
     }
     //! make sure we have a valid native index buffer
@@ -60,11 +59,6 @@ void RenderDevice::bindIndexBuffer(renderdevice::IIndexBuffer* pIndexBuffer){
         return;
     }
     
-    // early exit if already bound
-    if(m_context.m_pIndexBuffer == pIndexBuffer){
-        return;
-    }
-
     // bind our array buffer
     m_context.m_pIndexBuffer = pIndexBuffer;
     GLDEBUG(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, pNativeIndexBuffer->getArrayBufferHandle()));
@@ -73,9 +67,9 @@ void RenderDevice::bindIndexBuffer(renderdevice::IIndexBuffer* pIndexBuffer){
 //! sets vertex array
 //! \param pVertexBuffer the vertex array to bind
 void RenderDevice::bindVertexBuffer(renderdevice::IVertexBuffer* pVertexBuffer){
-    // make sure vertex buffer is valid
+    // unbinds previously bound buffer
     if(!pVertexBuffer){
-        NIMBLE_LOG_WARNING("graphics", "Failed to bind vertex buffer - invalid input");
+        GLDEBUG(glBindBuffer(GL_ARRAY_BUFFER, 0));
         return;
     }
     // make sure we have a valid native vertex buffer
@@ -93,11 +87,6 @@ void RenderDevice::bindVertexBuffer(renderdevice::IVertexBuffer* pVertexBuffer){
     renderdevice::opengl::ShaderProgram *pNativeShaderProgram = dynamic_cast<renderdevice::opengl::ShaderProgram*>(m_context.m_pShaderProgram);
     if(!pNativeShaderProgram){
         NIMBLE_LOG_WARNING("graphics", "Failed to bind vertex buffer - invalid native shader program");
-        return;
-    }
-    
-    // early exit if already bound
-    if(m_context.m_pVertexBuffer == pVertexBuffer){
         return;
     }
     
@@ -175,25 +164,20 @@ void RenderDevice::bindShaderProgram(renderdevice::IShaderProgram* pShaderProgra
     m_context.m_pVertexBuffer = 0;
     m_context.m_pIndexBuffer = 0;
 
-    // early exit if already bound
-    if(m_context.m_pShaderProgram == pShaderProgram){
-        return;
-    }
     // unbinding shader program
     if(pShaderProgram == 0){
         GLDEBUG(glUseProgram(0));
+        return;
     }
     
-    // update our internal context state
-    m_context.m_pShaderProgram = pShaderProgram;
-
     // make sure we have a valid native shader program
     renderdevice::opengl::ShaderProgram *pNativeShaderProgram = dynamic_cast<renderdevice::opengl::ShaderProgram*>(pShaderProgram);
     if(!pNativeShaderProgram){
         return;
     }
-
+    
     // bind shader program
+    m_context.m_pShaderProgram = pShaderProgram;
     GLint shaderProgramHandle = pNativeShaderProgram->getShaderProgramHandle();
     GLDEBUG(glUseProgram(shaderProgramHandle));
     
